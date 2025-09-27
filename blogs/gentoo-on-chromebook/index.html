@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Blog - Gentoo on an ARM64 Chromebook</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="/styles.css">
+</head>
+
+<body style="text-align: center;">
+	<main>
+		<div>
+			<h1>Installing gentoo on a Lenovo 100e 2nd Gen MTK Chromebook.</h1>
+			<h3>Date: 09/18/2025</h3>
+		</div>
+
+		<div>
+			<p>
+				My goal is to install Gentoo. It will take a long time to
+				compile everything, but it <strong>can</strong> be done.
+				I plan on documenting everything :3
+			</p>
+		</div>
+
+		<div>
+			<hr>
+			<img src="/blogs/gentoo-on-chromebook/img/chromebook-pmos-hyfetch.png" alt="Exhibit A: Chromebook hyfetch in PostmarketOS">
+			<hr>
+		</div>
+
+		<div style="text-align: left;">
+			<p>I currently have PostmarketOS on an SDCard. Going to try using the internal eMMC first (which is a 16GB eMMC).</p>
+			<p>If this doesn't work, then I'll move PostmarketOS to the internal eMMC and use Gentoo on the SDCard.</p>
+			<p>I start by partitioning the internal eMMC. Here's the layout (provided by 'fdisk -l /dev/mmcblk0'):</p>
+			<pre><code>
+Disk /dev/mmcblk0: 14.68 GiB, 15758000128 bytes, 30777344 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: gpt
+Disk identifier: CE93869C-0EE8-B445-9EAA-8F58DB064293
+
+Device          Start      End  Sectors  Size Type
+/dev/mmcblk0p1   8192    73727    65536   32M ChromeOS kernel
+/dev/mmcblk0p2  73728   598015   524288  256M EFI System
+/dev/mmcblk0p3 598016 30775295 30177280 14.4G Microsoft basic data
+			</code></pre>
+			<p>I mount '/dev/mmcblk0p3' to '/mnt', then download and extract the Arm64 systemd profile tarball.</p>
+			<p>It doesn't help that ssh is sometimes slow over wifi for no reason.</p>
+			<p>After extracting, I have roughly 13GB of storage left, with the ~200MB stage file left.</p>
+			<a href="./make.txt">Here's my 'make.conf'</a>
+			<p>I've had ssh give me a 'broken pipe' error <strong>twice</strong>. I'm now using 'screen' to capture tty1.</p>
+			<p></p>
+		</div>
+	</main>
+	<footer>
+		<div>
+			<p>This is unfinished. Please expect this to look like complete shit.</p>
+  		</div>    
+	</footer>
+</body>
+</html>
