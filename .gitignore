@@ -1,4 +1,5 @@
 .htaccess
 .venv
+.well-known
 files/zelda.tar.gz
 files/iso
